@@ -1,2 +1,0 @@
-# netflix
-Created with CodeSandbox
