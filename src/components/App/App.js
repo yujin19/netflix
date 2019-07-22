@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import "./App.css";
 import logo from "../../netflix_logo.png";
-import Header from "../Header";
-import PictureCell from "../PictureCell";
+import MovieList from "../MovieList";
+import Loading from "../Loading";
 
 class App extends Component {
   componentDidMount() {
@@ -21,46 +21,29 @@ class App extends Component {
   };
 
   render() {
-    const { list, recommendations } = this.props;
+    const { list, recommendations, loading } = this.props;
 
     return (
       <div className="App">
         <img className="logo" src={logo} alt="netflixlogo" />
-
-        <Header name="My List" />
-        <div className="list">
-          {list === undefined
-            ? null
-            : list.map((ele, index) => {
-                return (
-                  <PictureCell
-                    title={ele.title}
-                    key={index}
-                    img={ele.img}
-                    alt={ele.id}
-                    handler={() => this.handleRemove(index)}
-                    btn="Remove"
-                  />
-                );
-              })}
-        </div>
-        <Header name="Recommendations" />
-        <div className="recommendations">
-          {recommendations === undefined
-            ? null
-            : recommendations.map((ele, index) => {
-                return (
-                  <PictureCell
-                    title={ele.title}
-                    key={index}
-                    img={ele.img}
-                    alt={ele.id}
-                    handler={() => this.handleAdd(index)}
-                    btn="Add"
-                  />
-                );
-              })}
-        </div>
+        {loading ? (
+          <Loading msg="Loading..." />
+        ) : (
+          <div>
+            <MovieList
+              data={list}
+              name="My List"
+              handler={this.handleRemove}
+              btn="Remove"
+            />
+            <MovieList
+              data={recommendations}
+              name="Recommendations"
+              handler={this.handleAdd}
+              btn="Add"
+            />
+          </div>
+        )}
       </div>
     );
   }
@@ -69,7 +52,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     list: state.list,
-    recommendations: state.recommendations
+    recommendations: state.recommendations,
+    loading: state.loading
   };
 };
 

@@ -1,11 +1,12 @@
 body {
-  background-color: gray;
+  background-color: black;
 }
 
 .App {
   font-family: sans-serif;
   text-align: left;
   background: rgba(22, 20, 20, 0);
+  text-decoration-color: white;
   margin-left: 50px;
 }
 .logo {

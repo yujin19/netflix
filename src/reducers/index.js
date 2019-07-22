@@ -1,4 +1,3 @@
-import data from "../data.json";
 const initState = {
   loading: false,
   list: [],

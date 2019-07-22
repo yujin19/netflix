@@ -1,6 +1,11 @@
 import React from "react";
+import "./index.css";
 
 const Header = props => {
-  return <h2>{props.name}</h2>;
+  return (
+    <div>
+      <h2>{props.name}</h2>
+    </div>
+  );
 };
 export default Header;

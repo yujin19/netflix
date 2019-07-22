@@ -1,9 +1,10 @@
 import React from "react";
+import "./index.css";
 
 const PictureCell = props => {
   return (
     <div className="movie">
-      <h3>{props.title}</h3>
+      <h4>{props.title}</h4>
       <div className="postShow">
         <img src={props.img} alt={props.id} />
         <div className="overlay" />
